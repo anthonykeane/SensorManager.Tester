@@ -1,4 +1,4 @@
-package com.example.sensormanager.tester;
+package com.ubhave.sensormanager.tester;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
@@ -52,9 +52,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		// When the given tab is selected, show the tab contents in the
 		// container
 		Fragment fragment = new SensorListFragment();
-//		Bundle args = new Bundle();
-//		args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, tab.getPosition() + 1);
-//		fragment.setArguments(args);
+		Bundle args = new Bundle();
+		args.putBoolean(SensorListFragment.SENSOR_TYPE, tab.getPosition() == 0);
+		fragment.setArguments(args);
+		
 		getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
 	}
 
@@ -62,27 +63,4 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction)
 	{
 	}
-
-//	/**
-//	 * A dummy fragment representing a section of the app, but that simply
-//	 * displays dummy text.
-//	 */
-//	public static class DummySectionFragment extends Fragment
-//	{
-//		public DummySectionFragment()
-//		{
-//		}
-//
-//		public static final String ARG_SECTION_NUMBER = "section_number";
-//
-//		@Override
-//		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-//		{
-//			TextView textView = new TextView(getActivity());
-//			textView.setGravity(Gravity.CENTER);
-//			Bundle args = getArguments();
-//			textView.setText(Integer.toString(args.getInt(ARG_SECTION_NUMBER)));
-//			return textView;
-//		}
-//	}
 }

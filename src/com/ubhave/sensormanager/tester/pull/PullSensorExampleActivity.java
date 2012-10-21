@@ -1,4 +1,4 @@
-package com.example.sensormanager.tester.pull;
+package com.ubhave.sensormanager.tester.pull;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -16,11 +16,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.sensormanager.tester.R;
 import com.ubhave.sensormanager.data.SensorData;
+import com.ubhave.sensormanager.tester.R;
 
 public class PullSensorExampleActivity extends Activity implements SensorDataUI
 {
+
 	// Intent Strings
 	public final static String SENSOR_TYPE_ID = "sensorTypeId";
 
@@ -33,22 +34,21 @@ public class PullSensorExampleActivity extends Activity implements SensorDataUI
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pull_sensor_layout);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		// Sensor Data Listener
 		Intent intent = getIntent();
 		int sensorType = intent.getIntExtra(SENSOR_TYPE_ID, -1);
 		sensorDataListener = new ExampleSensorDataListener(sensorType, this);
-		
 
 		// UI Components
 		enableStartSensingButton();
 		enableStopSensingButton();
-		
-		Log.d("PullSensor", "Sensor type is: "+sensorDataListener.getSensorName());
 
-		setSensorTypeField(sensorDataListener.getSensorName());
+		Log.d("PullSensor", "Sensor type is: " + sensorDataListener.getSensorName());
+
 		setSensorStatusField();
-		setSensorTypeField(sensorDataListener.getSensorName());
+		this.setTitle(sensorDataListener.getSensorName());
 	}
 
 	@Override
@@ -153,14 +153,8 @@ public class PullSensorExampleActivity extends Activity implements SensorDataUI
 			status = r.getString(R.string.unsubscribed);
 		}
 
-		TextView text = (TextView) findViewById(R.id.status);
+		TextView text = (TextView) findViewById(R.id.statusvalue);
 		text.setText(status);
-	}
-
-	protected void setSensorTypeField(String sensorType)
-	{
-		EditText typeField = (EditText) findViewById(R.id.sensorType);
-		typeField.setText(sensorType);
 	}
 
 	protected void setSensorDataField(String dataString)

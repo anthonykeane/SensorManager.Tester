@@ -1,4 +1,4 @@
-package com.example.sensormanager.tester;
+package com.ubhave.sensormanager.tester;
 
 import android.app.Application;
 import android.content.Context;
