@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -44,8 +43,6 @@ public class PullSensorExampleActivity extends Activity implements SensorDataUI
 		// UI Components
 		enableStartSensingButton();
 		enableStopSensingButton();
-
-		Log.d("PullSensor", "Sensor type is: " + sensorDataListener.getSensorName());
 
 		setSensorStatusField();
 		this.setTitle(sensorDataListener.getSensorName());

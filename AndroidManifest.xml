@@ -42,12 +42,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".pull.PullSensorExampleActivity"
-            android:label="@string/title_activity_main"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".pull.PullSensorExampleActivity"
-            android:label="@string/title_activity_test_layout" >
+            android:name=".pull.PullSensorExampleActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.ubhave.sensormanager.tester.MainActivity" />
