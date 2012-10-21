@@ -7,7 +7,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.ubhave.sensormanager.tester.pullsensors.AccelerometerExampleActivity;
+import com.ubhave.sensormanager.sensors.SensorUtils;
+import com.ubhave.sensormanager.tester.pullsensors.PullSensorExampleActivity;
 
 public class MainActivity extends Activity
 {
@@ -24,7 +25,9 @@ public class MainActivity extends Activity
 			@Override
 			public void onClick(View arg0)
 			{
-				startActivity(new Intent(MainActivity.this, AccelerometerExampleActivity.class));
+				Intent intent = new Intent(MainActivity.this, PullSensorExampleActivity.class);
+				intent.putExtra(PullSensorExampleActivity.SENSOR_TYPE_ID, SensorUtils.SENSOR_TYPE_ACCELEROMETER);
+				startActivity(intent);
 			}
 		});
 	}

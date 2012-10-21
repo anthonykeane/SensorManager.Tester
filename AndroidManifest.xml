@@ -44,7 +44,7 @@
         </activity>
         
         <activity
-            android:name=".pullsensors.AccelerometerExampleActivity"
+            android:name=".pullsensors.PullSensorExampleActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait" />
     </application>

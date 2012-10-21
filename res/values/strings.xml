@@ -11,5 +11,8 @@
     <string name="startSensing">Start Sensing</string>
     <string name="stopSensing">Stop Sensing</string>
     <string name="title_activity_main">Sensor Manager Tester</string>
-
+    
+    <string name="subscribed">(Subscribed)</string>
+    <string name="unsubscribed">(Unsubscribed)</string>
+    
 </resources>
