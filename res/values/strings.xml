@@ -2,6 +2,8 @@
 
     <string name="app_name">ES Test</string>
     
+    <string name="accelerometer">Accelerometer</string>
+    
     <string name="sensorTitle">Sensor Type:</string>
     <string name="dataTitle">Sensed Data:</string>
     <string name="dataTime">(Data Time)</string>

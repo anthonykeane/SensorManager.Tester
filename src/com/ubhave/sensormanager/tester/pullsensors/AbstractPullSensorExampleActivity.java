@@ -24,11 +24,12 @@ import com.ubhave.sensormanager.tester.R;
 public abstract class AbstractPullSensorExampleActivity extends Activity implements SensorDataListener
 {
 
-	// UI Status
+	// UI Status Strings
 	private final static String UNSUBSCRIBED = "(Unsubscribed)";
 	private final static String SUBSCRIBED = "(Subscribed)";
 	
 	// Sensor Manager
+	private boolean isSubscribed;
 	protected int sensorSubscriptionId;
 	protected ESSensorManagerInterface sensorManager;
 	
@@ -45,10 +46,23 @@ public abstract class AbstractPullSensorExampleActivity extends Activity impleme
 			enableStartSensingButton();
 			enableStopSensingButton();
 			setSensorStatusField(UNSUBSCRIBED);
+			isSubscribed = false;
 		}
 		catch(ESException e)
 		{
 			Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+		}
+	}
+	
+	@Override
+	public void onPause()
+	{
+		super.onPause();
+		if (isSubscribed)
+		{
+			unsubscribeFromSensorData();
+			setSensorStatusField(UNSUBSCRIBED);
+			isSubscribed = false;
 		}
 	}
 	
@@ -66,6 +80,7 @@ public abstract class AbstractPullSensorExampleActivity extends Activity impleme
 			{
 				subscribeToSensorData();
 				setSensorStatusField(SUBSCRIBED);
+				isSubscribed = true;
 			}
 		});
 	}
@@ -80,6 +95,7 @@ public abstract class AbstractPullSensorExampleActivity extends Activity impleme
 			{
 				unsubscribeFromSensorData();
 				setSensorStatusField(UNSUBSCRIBED);
+				isSubscribed = false;
 			}
 		});
 	}
