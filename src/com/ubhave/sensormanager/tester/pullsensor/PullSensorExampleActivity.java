@@ -1,4 +1,4 @@
-package com.ubhave.sensormanager.tester.pullsensors;
+package com.ubhave.sensormanager.tester.pullsensor;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -35,13 +36,17 @@ public class PullSensorExampleActivity extends Activity implements SensorDataUI
 
 		// Sensor Data Listener
 		Intent intent = getIntent();
-		int sensorType = intent.getIntExtra(SENSOR_TYPE_ID, 0);
+		int sensorType = intent.getIntExtra(SENSOR_TYPE_ID, -1);
 		sensorDataListener = new ExampleSensorDataListener(sensorType, this);
+		
 
 		// UI Components
 		enableStartSensingButton();
 		enableStopSensingButton();
+		
+		Log.d("PullSensor", "Sensor type is: "+sensorDataListener.getSensorName());
 
+		setSensorTypeField(sensorDataListener.getSensorName());
 		setSensorStatusField();
 		setSensorTypeField(sensorDataListener.getSensorName());
 	}

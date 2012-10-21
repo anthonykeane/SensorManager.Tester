@@ -1,18 +1,18 @@
 <resources>
 
     <string name="app_name">ES Test</string>
-    
-    <string name="accelerometer">Accelerometer</string>
+    <string name="title_activity_main">Sensor Manager Tester</string>
+    <string name="instructions">Select a sensor from those available below.</string>
+    <string name="pull_sensor">Pull Sensors:</string>
     
     <string name="sensorTitle">Sensor Type:</string>
     <string name="dataTitle">Sensed Data:</string>
+    
     <string name="dataTime">(Data Time)</string>
+    <string name="subscribed">(Subscribed)</string>
+    <string name="unsubscribed">(Unsubscribed)</string>
     
     <string name="startSensing">Start Sensing</string>
     <string name="stopSensing">Stop Sensing</string>
-    <string name="title_activity_main">Sensor Manager Tester</string>
-    
-    <string name="subscribed">(Subscribed)</string>
-    <string name="unsubscribed">(Unsubscribed)</string>
     
 </resources>
