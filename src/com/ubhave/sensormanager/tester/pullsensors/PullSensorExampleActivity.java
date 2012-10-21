@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ubhave.sensormanager.data.SensorData;
 import com.ubhave.sensormanager.tester.R;
@@ -40,7 +41,7 @@ public class PullSensorExampleActivity extends Activity implements SensorDataUI
 		// UI Components
 		enableStartSensingButton();
 		enableStopSensingButton();
-		
+
 		setSensorStatusField();
 		setSensorTypeField(sensorDataListener.getSensorName());
 	}
@@ -102,7 +103,14 @@ public class PullSensorExampleActivity extends Activity implements SensorDataUI
 			@Override
 			public void onClick(View v)
 			{
-				subscribe();
+				if (!isSubscribed)
+				{
+					subscribe();
+				}
+				else
+				{
+					Toast.makeText(PullSensorExampleActivity.this, "Sensor Listener already subscribed.", Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 	}
@@ -115,7 +123,14 @@ public class PullSensorExampleActivity extends Activity implements SensorDataUI
 			@Override
 			public void onClick(View v)
 			{
-				unsubscribe();
+				if (isSubscribed)
+				{
+					unsubscribe();
+				}
+				else
+				{
+					Toast.makeText(PullSensorExampleActivity.this, "Sensor Listener not subscribed.", Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 	}
