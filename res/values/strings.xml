@@ -1,8 +1,13 @@
 <resources>
 
     <string name="app_name">ES Test</string>
+    
+    <string name="sensorTitle">Sensor Type:</string>
+    <string name="dataTitle">Sensed Data:</string>
+    <string name="dataTime">(Data Time)</string>
+    
     <string name="startSensing">Start Sensing</string>
     <string name="stopSensing">Stop Sensing</string>
-    <string name="title_activity_main">ES Test</string>
+    <string name="title_activity_main">Sensor Manager Tester</string>
 
 </resources>
