@@ -25,7 +25,8 @@ public class ExampleSensorDataListener implements SensorDataListener
 		isSubscribed = false;
 		try
 		{
-			sensorManager = ESSensorManager.getSensorManager(ApplicationContext.getContext());
+			ESSensorManager.startSensorManager(ApplicationContext.getContext());
+			sensorManager = ESSensorManager.getSensorManager();
 		}
 		catch (ESException e)
 		{
