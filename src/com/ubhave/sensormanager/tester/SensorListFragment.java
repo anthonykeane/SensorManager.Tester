@@ -65,22 +65,26 @@ public class SensorListFragment extends Fragment
 	{
 		sensorList = new ArrayList<HashMap<String, String>>();
 		int[] selectedSensors;
+		String[] sensorDescriptions;
+		
 		if (isPullSensorFragment)
 		{
 			selectedSensors = pullSensors;
+			sensorDescriptions = getResources().getStringArray(R.array.pull_sensors_descriptions);
 		}
 		else
 		{
 			selectedSensors = pushSensors;
+			sensorDescriptions = getResources().getStringArray(R.array.push_sensors_descriptions);
 		}
 
-		for (int sensor : selectedSensors)
+		for (int i=0; i<selectedSensors.length; i++)
 		{
 			try
 			{
 				HashMap<String, String> entry = new HashMap<String, String>();
-				entry.put(TITLE, SensorUtils.getSensorName(sensor));
-				entry.put(DESCRIPTION, DESCRIPTION);
+				entry.put(TITLE, SensorUtils.getSensorName(selectedSensors[i]));
+				entry.put(DESCRIPTION, sensorDescriptions[i]);
 				sensorList.add(entry);
 			}
 			catch (ESException e)

@@ -23,9 +23,12 @@ public class PullSensorExampleActivity extends Activity implements SensorDataUI
 
 	// Intent Strings
 	public final static String SENSOR_TYPE_ID = "sensorTypeId";
+	private final int UNSUBSCRIBED = 0;
+	private final int SUBSCRIBED = 1;
+	private final int SAMPLING = 2;
 
 	// Sensor Manager
-	private boolean isSubscribed;
+	private int currentStatus, sensorType;
 	private ExampleSensorDataListener sensorDataListener;
 
 	@Override
@@ -37,22 +40,25 @@ public class PullSensorExampleActivity extends Activity implements SensorDataUI
 
 		// Sensor Data Listener
 		Intent intent = getIntent();
-		int sensorType = intent.getIntExtra(SENSOR_TYPE_ID, -1);
+		sensorType = intent.getIntExtra(SENSOR_TYPE_ID, -1);
 		sensorDataListener = new ExampleSensorDataListener(sensorType, this);
 
 		// UI Components
 		enableStartSensingButton();
 		enableStopSensingButton();
+		enableSenseOnceButton();
 
 		setSensorStatusField();
 		this.setTitle(sensorDataListener.getSensorName());
+
+		currentStatus = UNSUBSCRIBED;
 	}
 
 	@Override
 	public void onPause()
 	{
 		super.onPause();
-		if (isSubscribed)
+		if (sensorDataListener.isSubscribed())
 		{
 			unsubscribe();
 		}
@@ -64,20 +70,63 @@ public class PullSensorExampleActivity extends Activity implements SensorDataUI
 
 	private void subscribe()
 	{
-		sensorDataListener.subscribeToSensorData();
-		isSubscribed = true;
-
-		// Update UI
+		if (currentStatus == SAMPLING)
+		{
+			Toast.makeText(PullSensorExampleActivity.this, "Cannot subscribe while pulling data.", Toast.LENGTH_SHORT).show();
+		}
+		else if (!sensorDataListener.isSubscribed())
+		{
+			sensorDataListener.subscribeToSensorData();
+			currentStatus = SUBSCRIBED;
+		}
+		else
+		{
+			Toast.makeText(PullSensorExampleActivity.this, "Sensor Listener already subscribed.", Toast.LENGTH_SHORT).show();
+		}
 		setSensorStatusField();
 	}
 
 	private void unsubscribe()
 	{
-		sensorDataListener.unsubscribeFromSensorData();
-		isSubscribed = false;
-
-		// Update UI
+		if (sensorDataListener.isSubscribed())
+		{
+			sensorDataListener.unsubscribeFromSensorData();
+			currentStatus = UNSUBSCRIBED;
+		}
+		else
+		{
+			Toast.makeText(PullSensorExampleActivity.this, "Sensor Listener not subscribed.", Toast.LENGTH_SHORT).show();
+		}
 		setSensorStatusField();
+	}
+
+	private void pullDataOnce()
+	{
+		if (sensorDataListener.isSubscribed())
+		{
+			Toast.makeText(PullSensorExampleActivity.this, "Cannot pull data while sensor listener is subscribed.", Toast.LENGTH_SHORT).show();
+		}
+		else
+		{
+			new SampleOnceTask()
+			{
+				@Override
+				public void onPreExecute()
+				{
+					currentStatus = SAMPLING;
+					setSensorStatusField();
+				}
+				
+				@Override
+				public void onPostExecute(SensorData data)
+				{
+					currentStatus = UNSUBSCRIBED;
+					updateUI(data);
+					setSensorStatusField();
+				}
+				
+			}.execute(sensorType);
+		}
 	}
 
 	@Override
@@ -105,14 +154,7 @@ public class PullSensorExampleActivity extends Activity implements SensorDataUI
 			@Override
 			public void onClick(View v)
 			{
-				if (!isSubscribed)
-				{
-					subscribe();
-				}
-				else
-				{
-					Toast.makeText(PullSensorExampleActivity.this, "Sensor Listener already subscribed.", Toast.LENGTH_SHORT).show();
-				}
+				subscribe();
 			}
 		});
 	}
@@ -125,14 +167,20 @@ public class PullSensorExampleActivity extends Activity implements SensorDataUI
 			@Override
 			public void onClick(View v)
 			{
-				if (isSubscribed)
-				{
-					unsubscribe();
-				}
-				else
-				{
-					Toast.makeText(PullSensorExampleActivity.this, "Sensor Listener not subscribed.", Toast.LENGTH_SHORT).show();
-				}
+				unsubscribe();
+			}
+		});
+	}
+
+	private void enableSenseOnceButton()
+	{
+		Button button = (Button) findViewById(R.id.pullOnceButton);
+		button.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				pullDataOnce();
 			}
 		});
 	}
@@ -141,7 +189,12 @@ public class PullSensorExampleActivity extends Activity implements SensorDataUI
 	{
 		Resources r = getResources();
 		String status;
-		if (isSubscribed)
+		
+		if (currentStatus == SAMPLING)
+		{
+			status = r.getString(R.string.sampling);
+		}
+		else if (sensorDataListener.isSubscribed())
 		{
 			status = r.getString(R.string.subscribed);
 		}

@@ -3,30 +3,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/buttonLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_alignParentTop="true"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:paddingTop="20dp" >
 
         <Button
-            android:id="@+id/startSensing"
+            android:id="@+id/pullOnceButton"
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:text="@string/pullData" />
+
+        <Button
+            android:id="@+id/startSensing"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/startSensing" />
 
         <Button
             android:id="@+id/stopSensing"
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:text="@string/stopSensing" />
-    </RelativeLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/dataLayout"

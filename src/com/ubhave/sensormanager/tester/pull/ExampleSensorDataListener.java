@@ -16,11 +16,13 @@ public class ExampleSensorDataListener implements SensorDataListener
 
 	private ESSensorManagerInterface sensorManager;
 	private int sensorSubscriptionId;
+	private boolean isSubscribed;
 
 	public ExampleSensorDataListener(int sensorType, SensorDataUI userInterface)
 	{
 		this.sensorType = sensorType;
 		this.userInterface = userInterface;
+		isSubscribed = false;
 		try
 		{
 			sensorManager = ESSensorManager.getSensorManager(ApplicationContext.getContext());
@@ -36,6 +38,7 @@ public class ExampleSensorDataListener implements SensorDataListener
 		try
 		{
 			sensorSubscriptionId = sensorManager.subscribeToSensorData(sensorType, this);
+			isSubscribed = true;
 		}
 		catch (ESException e)
 		{
@@ -48,6 +51,7 @@ public class ExampleSensorDataListener implements SensorDataListener
 		try
 		{
 			sensorManager.unsubscribeFromSensorData(sensorSubscriptionId);
+			isSubscribed = false;
 		}
 		catch (ESException e)
 		{
@@ -72,6 +76,11 @@ public class ExampleSensorDataListener implements SensorDataListener
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public boolean isSubscribed()
+	{
+		return isSubscribed;
 	}
 
 }
