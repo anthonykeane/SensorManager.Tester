@@ -41,25 +41,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".pull.ConfigurablePullSensorExampleActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ubhave.sensormanager.tester.MainActivity" />
-        </activity>
-        <activity
-            android:name=".pull.NonConfigurablePullSensorExampleActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ubhave.sensormanager.tester.MainActivity" />
-        </activity>
-        <activity
-            android:name=".push.PushSensorExampleActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ubhave.sensormanager.tester.MainActivity" />
-        </activity>
-        
+        <activity android:name=".pull.ConfigurablePullSensorExampleActivity" />
+        <activity android:name=".pull.NonConfigurablePullSensorExampleActivity"  />
+        <activity android:name=".push.PushSensorExampleActivity" />
         <activity android:name=".pull.UpdateSensorConfigExampleActivity" />
     </application>
 
