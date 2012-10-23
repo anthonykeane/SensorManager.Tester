@@ -1,5 +1,7 @@
 package com.ubhave.sensormanager.tester.pull;
 
+import java.text.DecimalFormat;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +18,7 @@ public class UpdateSensorConfigExampleActivity extends Activity
 	public final static String SENSOR_TYPE_ID = "sensorTypeId";
 
 	private int selectedSensorType;
+	private DecimalFormat formatter;
 	private ExampleSensorConfigUpdater updater;
 
 	@Override
@@ -31,6 +34,8 @@ public class UpdateSensorConfigExampleActivity extends Activity
 		/*
 		 * Create the user interface
 		 */
+		formatter = new DecimalFormat("#.##");
+		
 		this.setTitle(updater.getSensorName() + " Config");
 		setContentView(R.layout.config_sensor_layout);
 
@@ -66,7 +71,7 @@ public class UpdateSensorConfigExampleActivity extends Activity
 			initialValue = updater.getSensorSleepWindow();
 		}
 
-		currentStatus.setText(initialValue + " seconds");
+		currentStatus.setText(getTime(initialValue));
 		SeekBar progress = (SeekBar) findViewById(progressId);
 		progress.setProgress(initialValue);
 
@@ -97,9 +102,28 @@ public class UpdateSensorConfigExampleActivity extends Activity
 			public void onProgressChanged(SeekBar seekBar, int rating, boolean fromUser)
 			{
 				if (rating == 0)
+				{
 					rating = 1;
-				currentStatus.setText(rating + " seconds");
+				}
+				currentStatus.setText(getTime(rating));
 			}
 		});
+	}
+	
+	private String getTime(int seconds)
+	{
+		if (seconds == 1)
+		{
+			return "1 second";
+		}
+		if (seconds <= 120)
+		{
+			return seconds+" seconds";
+		}
+		else
+		{
+			double minutes = (double) seconds / 60;
+			return formatter.format(minutes) + " minutes";
+		}
 	}
 }
