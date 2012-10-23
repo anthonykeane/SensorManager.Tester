@@ -18,6 +18,11 @@
     <string name="pullData">Sample Once</string>
     <string name="changeConfig">Change Sensor Configuration</string>
     
+    
+    <string name="sampleTime">Sample Time:</string>
+    <string name="sleepTime">Sleep Time:</string>
+    <string name="done">Done</string>
+    
     <string name="title_activity_main">Sensor Manager Tester</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>

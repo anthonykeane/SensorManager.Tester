@@ -37,4 +37,28 @@ public class ExampleSensorConfigUpdater
 			return null;
 		}
 	}
+	
+	public void setSensorSampleWindow(long millis)
+	{
+		// TODO
+	}
+	
+	public void setSensorSleepWindow(long millis)
+	{
+		// TODO
+	}
+	
+	public int getSensorSampleWindow()
+	{
+		// TODO
+		return 0;
+	}
+	
+	public int getSensorSleepWindow()
+	{
+		// TODO
+		return 0;
+	}
+	
+	
 }

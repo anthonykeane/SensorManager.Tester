@@ -42,7 +42,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".pull.PullSensorExampleActivity" >
+            android:name=".pull.ConfigurablePullSensorExampleActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ubhave.sensormanager.tester.MainActivity" />
+        </activity>
+        <activity
+            android:name=".pull.NonConfigurablePullSensorExampleActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.ubhave.sensormanager.tester.MainActivity" />

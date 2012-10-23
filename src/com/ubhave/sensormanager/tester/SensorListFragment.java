@@ -18,7 +18,9 @@ import android.widget.SimpleAdapter;
 
 import com.ubhave.sensormanager.ESException;
 import com.ubhave.sensormanager.sensors.SensorUtils;
-import com.ubhave.sensormanager.tester.pull.PullSensorExampleActivity;
+import com.ubhave.sensormanager.tester.pull.ConfigurablePullSensorExampleActivity;
+import com.ubhave.sensormanager.tester.pull.NonConfigurablePullSensorExampleActivity;
+import com.ubhave.sensormanager.tester.pull.AbstractPullSensorExampleActivity;
 import com.ubhave.sensormanager.tester.push.PushSensorExampleActivity;
 
 public class SensorListFragment extends Fragment
@@ -26,6 +28,8 @@ public class SensorListFragment extends Fragment
 	public final static String SENSOR_TYPE = "sensorType";
 
 	private final static int[] pullSensors = new int[] { SensorUtils.SENSOR_TYPE_ACCELEROMETER, SensorUtils.SENSOR_TYPE_BLUETOOTH, SensorUtils.SENSOR_TYPE_LOCATION, SensorUtils.SENSOR_TYPE_MICROPHONE, SensorUtils.SENSOR_TYPE_WIFI };
+	private final static boolean[] isConfigurablePullSensor = new boolean[] { true, false, false, true, false };
+
 	private final static int[] pushSensors = new int[] { SensorUtils.SENSOR_TYPE_BATTERY, SensorUtils.SENSOR_TYPE_PHONE_STATE, SensorUtils.SENSOR_TYPE_PROXIMITY, SensorUtils.SENSOR_TYPE_SCREEN, SensorUtils.SENSOR_TYPE_SMS };
 
 	private final static String TITLE = "title";
@@ -53,7 +57,7 @@ public class SensorListFragment extends Fragment
 			{
 				if (isPullSensorFragment)
 				{
-					launchPullSensorActivity(container.getContext(), pullSensors[position]);
+					launchPullSensorActivity(container.getContext(), pullSensors[position], isConfigurablePullSensor[position]);
 				}
 				else
 				{
@@ -97,17 +101,25 @@ public class SensorListFragment extends Fragment
 		}
 	}
 
-	private void launchPullSensorActivity(Context context, int sensorType)
+	private void launchPullSensorActivity(Context context, int sensorType, boolean isConfigurable)
 	{
-		Intent intent = new Intent(context, PullSensorExampleActivity.class);
-		intent.putExtra(PullSensorExampleActivity.SENSOR_TYPE_ID, sensorType);
+		Intent intent;
+		if (isConfigurable)
+		{
+			intent = new Intent(context, ConfigurablePullSensorExampleActivity.class);
+		}
+		else
+		{
+			intent = new Intent(context, NonConfigurablePullSensorExampleActivity.class);
+		}
+		intent.putExtra(AbstractPullSensorExampleActivity.SENSOR_TYPE_ID, sensorType);
 		startActivity(intent);
 	}
 
 	private void launchPushSensorActivity(Context context, int sensorType)
 	{
 		Intent intent = new Intent(context, PushSensorExampleActivity.class);
-		intent.putExtra(PullSensorExampleActivity.SENSOR_TYPE_ID, sensorType);
+		intent.putExtra(AbstractPullSensorExampleActivity.SENSOR_TYPE_ID, sensorType);
 		startActivity(intent);
 	}
 }

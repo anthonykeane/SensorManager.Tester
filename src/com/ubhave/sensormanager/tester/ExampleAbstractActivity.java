@@ -175,7 +175,6 @@ public abstract class ExampleAbstractActivity extends Activity implements Sensor
 		{
 			Toast.makeText(this, "Sensor Listener not subscribed.", Toast.LENGTH_SHORT).show();
 		}
-
 	}
 
 }

@@ -1,6 +1,5 @@
 package com.ubhave.sensormanager.tester.pull;
 
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +11,7 @@ import com.ubhave.sensormanager.data.SensorData;
 import com.ubhave.sensormanager.tester.ExampleAbstractActivity;
 import com.ubhave.sensormanager.tester.R;
 
-public class PullSensorExampleActivity extends ExampleAbstractActivity
+public abstract class AbstractPullSensorExampleActivity extends ExampleAbstractActivity
 {
 	private final int SAMPLING = 2;
 
@@ -49,18 +48,7 @@ public class PullSensorExampleActivity extends ExampleAbstractActivity
 		});
 	}
 	
-	private void enableUpdateConfigButton()
-	{
-		Button button = (Button) findViewById(R.id.changeConfigButton);
-		button.setOnClickListener(new OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				updateSensorConfig();
-			}
-		});
-	}
+	protected abstract void enableUpdateConfigButton();
 
 	@Override
 	protected String getStatusString()
@@ -89,19 +77,11 @@ public class PullSensorExampleActivity extends ExampleAbstractActivity
 		}
 	}
 
-	private void updateSensorConfig()
-	{
-		Intent intent = new Intent(this, UpdateSensorConfigExampleActivity.class);
-		intent.putExtra(UpdateSensorConfigExampleActivity.SENSOR_TYPE_ID, selectedSensorType);
-		
-		startActivity(intent);
-	}
-
 	private void pullDataOnce()
 	{
 		if (sensorDataListener.isSubscribed())
 		{
-			Toast.makeText(PullSensorExampleActivity.this, "Cannot pull data while sensor listener is subscribed.", Toast.LENGTH_SHORT).show();
+			Toast.makeText(AbstractPullSensorExampleActivity.this, "Cannot pull data while sensor listener is subscribed.", Toast.LENGTH_SHORT).show();
 		}
 		else
 		{
