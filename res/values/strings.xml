@@ -5,7 +5,8 @@
     <string name="pull_sensor">Pull Sensors</string>
     <string name="push_sensor">Push Sensors</string>
     <string name="statusTitle">Current Status:</string>
-    <string name="dataTitle">Latest Sensed Data:</string>
+    <string name="dataPushTitle">Sensed Data:</string>
+    <string name="dataPullTitle">Latest Sensed Data:</string>
     <string name="dataTime">(Data Time)</string>
     
     <string name="sampling">Sampling</string>
@@ -15,6 +16,7 @@
     <string name="startSensing">Start Sensing</string>
     <string name="stopSensing">Stop Sensing</string>
     <string name="pullData">Sample Once</string>
+    <string name="changeConfig">Change Sensor Configuration</string>
     
     <string name="title_activity_main">Sensor Manager Tester</string>
     <string name="hello_world">Hello world!</string>

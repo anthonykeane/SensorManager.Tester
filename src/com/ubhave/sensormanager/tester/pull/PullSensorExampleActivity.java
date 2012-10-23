@@ -1,5 +1,6 @@
 package com.ubhave.sensormanager.tester.pull;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,7 @@ public class PullSensorExampleActivity extends ExampleAbstractActivity
 		 * Additional UI button for pull sensor
 		 */
 		enableSenseOnceButton();
+		enableUpdateConfigButton();
 	}
 
 	protected int getInterfaceLayout()
@@ -43,6 +45,19 @@ public class PullSensorExampleActivity extends ExampleAbstractActivity
 			public void onClick(View v)
 			{
 				pullDataOnce();
+			}
+		});
+	}
+	
+	private void enableUpdateConfigButton()
+	{
+		Button button = (Button) findViewById(R.id.changeConfigButton);
+		button.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				updateSensorConfig();
 			}
 		});
 	}
@@ -74,9 +89,13 @@ public class PullSensorExampleActivity extends ExampleAbstractActivity
 		}
 	}
 
-	/*
-	 * Polling the sensor for data
-	 */
+	private void updateSensorConfig()
+	{
+		Intent intent = new Intent(this, UpdateSensorConfigExampleActivity.class);
+		intent.putExtra(UpdateSensorConfigExampleActivity.SENSOR_TYPE_ID, selectedSensorType);
+		
+		startActivity(intent);
+	}
 
 	private void pullDataOnce()
 	{
