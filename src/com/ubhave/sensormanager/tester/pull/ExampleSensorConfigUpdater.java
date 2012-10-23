@@ -3,6 +3,7 @@ package com.ubhave.sensormanager.tester.pull;
 import com.ubhave.sensormanager.ESException;
 import com.ubhave.sensormanager.ESSensorManager;
 import com.ubhave.sensormanager.ESSensorManagerInterface;
+import com.ubhave.sensormanager.config.SensorConfig;
 import com.ubhave.sensormanager.sensors.SensorUtils;
 import com.ubhave.sensormanager.tester.ApplicationContext;
 
@@ -40,24 +41,50 @@ public class ExampleSensorConfigUpdater
 	
 	public void setSensorSampleWindow(long millis)
 	{
-		// TODO
+		try {
+			sensorManager.setSensorConfig(sensorType, SensorConfig.SENSOR_SAMPLE_INTERVAL, millis);
+		}
+		catch(ESException e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	public void setSensorSleepWindow(long millis)
 	{
-		// TODO
+		try {
+			sensorManager.setSensorConfig(sensorType, SensorConfig.SENSOR_SAMPLE_INTERVAL, millis);
+		}
+		catch(ESException e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	public int getSensorSampleWindow()
 	{
-		// TODO
-		return 0;
+		try {
+			Long sampleWindow = (Long) sensorManager.getSensorConfigValue(sensorType, SensorConfig.SENSOR_SAMPLE_INTERVAL);
+			return (int) (sampleWindow / 1000);
+		}
+		catch(ESException e)
+		{
+			e.printStackTrace();
+			return 0;
+		}
 	}
 	
 	public int getSensorSleepWindow()
 	{
-		// TODO
-		return 0;
+		try {
+			Long sampleWindow = (Long) sensorManager.getSensorConfigValue(sensorType, SensorConfig.SENSOR_SLEEP_INTERVAL);
+			return (int) (sampleWindow / 1000);
+		}
+		catch(ESException e)
+		{
+			e.printStackTrace();
+			return 0;
+		}
 	}
 	
 	
