@@ -19,11 +19,12 @@ import android.widget.SimpleAdapter;
 import com.ubhave.sensormanager.ESException;
 import com.ubhave.sensormanager.sensors.SensorUtils;
 import com.ubhave.sensormanager.tester.pull.PullSensorExampleActivity;
+import com.ubhave.sensormanager.tester.push.PushSensorExampleActivity;
 
 public class SensorListFragment extends Fragment
 {
 	public final static String SENSOR_TYPE = "sensorType";
-	
+
 	private final static int[] pullSensors = new int[] { SensorUtils.SENSOR_TYPE_ACCELEROMETER, SensorUtils.SENSOR_TYPE_BLUETOOTH, SensorUtils.SENSOR_TYPE_LOCATION, SensorUtils.SENSOR_TYPE_MICROPHONE, SensorUtils.SENSOR_TYPE_WIFI };
 	private final static int[] pushSensors = new int[] { SensorUtils.SENSOR_TYPE_BATTERY, SensorUtils.SENSOR_TYPE_PHONE_STATE, SensorUtils.SENSOR_TYPE_PROXIMITY, SensorUtils.SENSOR_TYPE_SCREEN, SensorUtils.SENSOR_TYPE_SMS };
 
@@ -32,18 +33,17 @@ public class SensorListFragment extends Fragment
 	private final static String[] from = new String[] { TITLE, DESCRIPTION };
 	private final static int[] to = new int[] { R.id.title, R.id.description };
 
-	
 	private List<HashMap<String, String>> sensorList;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState)
 	{
 		View view = inflater.inflate(R.layout.tab_main, container, false);
-		
+
 		Bundle args = this.getArguments();
 		final boolean isPullSensorFragment = args.getBoolean(SENSOR_TYPE);
 		setSensorList(isPullSensorFragment);
-		
+
 		ListView sensorListView = (ListView) view.findViewById(R.id.pullSensorListView);
 		sensorListView.setAdapter(new SimpleAdapter(container.getContext(), sensorList, R.layout.sensorlist_item, from, to));
 		sensorListView.setOnItemClickListener(new OnItemClickListener()
@@ -55,18 +55,21 @@ public class SensorListFragment extends Fragment
 				{
 					launchPullSensorActivity(container.getContext(), pullSensors[position]);
 				}
-				
+				else
+				{
+					launchPushSensorActivity(container.getContext(), pushSensors[position]);
+				}
 			}
 		});
 		return view;
 	}
-	
+
 	public void setSensorList(boolean isPullSensorFragment)
 	{
 		sensorList = new ArrayList<HashMap<String, String>>();
 		int[] selectedSensors;
 		String[] sensorDescriptions;
-		
+
 		if (isPullSensorFragment)
 		{
 			selectedSensors = pullSensors;
@@ -78,7 +81,7 @@ public class SensorListFragment extends Fragment
 			sensorDescriptions = getResources().getStringArray(R.array.push_sensors_descriptions);
 		}
 
-		for (int i=0; i<selectedSensors.length; i++)
+		for (int i = 0; i < selectedSensors.length; i++)
 		{
 			try
 			{
@@ -97,6 +100,13 @@ public class SensorListFragment extends Fragment
 	private void launchPullSensorActivity(Context context, int sensorType)
 	{
 		Intent intent = new Intent(context, PullSensorExampleActivity.class);
+		intent.putExtra(PullSensorExampleActivity.SENSOR_TYPE_ID, sensorType);
+		startActivity(intent);
+	}
+
+	private void launchPushSensorActivity(Context context, int sensorType)
+	{
+		Intent intent = new Intent(context, PushSensorExampleActivity.class);
 		intent.putExtra(PullSensorExampleActivity.SENSOR_TYPE_ID, sensorType);
 		startActivity(intent);
 	}

@@ -1,4 +1,4 @@
-package com.ubhave.sensormanager.tester.pull;
+package com.ubhave.sensormanager.tester;
 
 import com.ubhave.sensormanager.ESException;
 import com.ubhave.sensormanager.ESSensorManager;
@@ -6,8 +6,6 @@ import com.ubhave.sensormanager.ESSensorManagerInterface;
 import com.ubhave.sensormanager.SensorDataListener;
 import com.ubhave.sensormanager.data.SensorData;
 import com.ubhave.sensormanager.sensors.SensorUtils;
-import com.ubhave.sensormanager.tester.ApplicationContext;
-import com.ubhave.sensormanager.tester.SensorDataUI;
 
 
 public class ExampleSensorDataListener implements SensorDataListener

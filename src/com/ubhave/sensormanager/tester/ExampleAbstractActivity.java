@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ubhave.sensormanager.data.SensorData;
-import com.ubhave.sensormanager.tester.pull.ExampleSensorDataListener;
 
 public abstract class ExampleAbstractActivity extends Activity implements SensorDataUI
 {
@@ -39,7 +38,7 @@ public abstract class ExampleAbstractActivity extends Activity implements Sensor
 		/*
 		 * Create the user interface
 		 */
-		setContentView(R.layout.pull_sensor_layout);
+		setContentView(getInterfaceLayout());
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		enableStartSensingButton();
@@ -51,9 +50,9 @@ public abstract class ExampleAbstractActivity extends Activity implements Sensor
 	}
 
 	@Override
-	public void onPause()
+	public void onDestroy()
 	{
-		super.onPause();
+		super.onDestroy();
 		if (sensorDataListener.isSubscribed())
 		{
 			unsubscribe();

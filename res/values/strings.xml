@@ -5,7 +5,7 @@
     <string name="pull_sensor">Pull Sensors</string>
     <string name="push_sensor">Push Sensors</string>
     <string name="statusTitle">Current Status:</string>
-    <string name="dataTitle">Sensed Data:</string>
+    <string name="dataTitle">Latest Sensed Data:</string>
     <string name="dataTime">(Data Time)</string>
     
     <string name="sampling">Sampling</string>
