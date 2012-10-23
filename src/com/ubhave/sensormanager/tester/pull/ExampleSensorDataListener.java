@@ -7,6 +7,7 @@ import com.ubhave.sensormanager.SensorDataListener;
 import com.ubhave.sensormanager.data.SensorData;
 import com.ubhave.sensormanager.sensors.SensorUtils;
 import com.ubhave.sensormanager.tester.ApplicationContext;
+import com.ubhave.sensormanager.tester.SensorDataUI;
 
 
 public class ExampleSensorDataListener implements SensorDataListener

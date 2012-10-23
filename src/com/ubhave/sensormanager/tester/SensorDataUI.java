@@ -1,4 +1,4 @@
-package com.ubhave.sensormanager.tester.pull;
+package com.ubhave.sensormanager.tester;
 
 import com.ubhave.sensormanager.data.SensorData;
 
