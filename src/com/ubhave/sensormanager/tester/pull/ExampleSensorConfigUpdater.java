@@ -17,8 +17,7 @@ public class ExampleSensorConfigUpdater
 		this.sensorType = sensor;
 		try
 		{
-			ESSensorManager.startSensorManager(ApplicationContext.getContext());
-			sensorManager = ESSensorManager.getSensorManager();
+			sensorManager = ESSensorManager.getSensorManager(ApplicationContext.getContext());
 		}
 		catch (ESException e)
 		{

@@ -15,8 +15,7 @@ public class SampleOnceTask extends AsyncTask<Integer, Void, SensorData>
 	{
 		try
 		{
-			ESSensorManager.startSensorManager(ApplicationContext.getContext());
-			sensorManager = ESSensorManager.getSensorManager();
+			sensorManager = ESSensorManager.getSensorManager(ApplicationContext.getContext());
 		}
 		catch (ESException e)
 		{
