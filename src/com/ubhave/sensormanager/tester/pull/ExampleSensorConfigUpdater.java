@@ -52,7 +52,7 @@ public class ExampleSensorConfigUpdater
 	public void setSensorSleepWindow(long millis)
 	{
 		try {
-			sensorManager.setSensorConfig(sensorType, SensorConfig.SLEEP_WINDOW_LENGTH_MILLIS, millis);
+			sensorManager.setSensorConfig(sensorType, SensorConfig.POST_SENSE_SLEEP_LENGTH_MILLIS, millis);
 		}
 		catch(ESException e)
 		{
@@ -76,7 +76,7 @@ public class ExampleSensorConfigUpdater
 	public int getSensorSleepWindow()
 	{
 		try {
-			Long sampleWindow = (Long) sensorManager.getSensorConfigValue(sensorType, SensorConfig.SLEEP_WINDOW_LENGTH_MILLIS);
+			Long sampleWindow = (Long) sensorManager.getSensorConfigValue(sensorType, SensorConfig.POST_SENSE_SLEEP_LENGTH_MILLIS);
 			return (int) (sampleWindow / 1000);
 		}
 		catch(ESException e)
