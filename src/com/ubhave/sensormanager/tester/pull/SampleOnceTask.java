@@ -7,29 +7,23 @@ import com.ubhave.sensormanager.ESSensorManager;
 import com.ubhave.sensormanager.data.SensorData;
 import com.ubhave.sensormanager.tester.ApplicationContext;
 
-public class SampleOnceTask extends AsyncTask<Integer, Void, SensorData>
+public class SampleOnceTask extends AsyncTask<Void, Void, SensorData>
 {
-	private ESSensorManager sensorManager;
+	private final ESSensorManager sensorManager;
+	private final int sensorType;
 
-	public SampleOnceTask()
+	public SampleOnceTask(int sensorType) throws ESException
 	{
-		try
-		{
-			sensorManager = ESSensorManager.getSensorManager(ApplicationContext.getContext());
-		}
-		catch (ESException e)
-		{
-			e.printStackTrace();
-		}
+		this.sensorType = sensorType;
+		sensorManager = ESSensorManager.getSensorManager(ApplicationContext.getContext());
 	}
 
 	@Override
-	protected SensorData doInBackground(Integer... sensorIds)
+	protected SensorData doInBackground(Void... params)
 	{
 		try
 		{
-			int sensorId = sensorIds[0];
-			return sensorManager.getDataFromSensor(sensorId);
+			return sensorManager.getDataFromSensor(sensorType);
 		}
 		catch (ESException e)
 		{

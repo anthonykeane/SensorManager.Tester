@@ -7,6 +7,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.ubhave.sensormanager.ESException;
 import com.ubhave.sensormanager.data.SensorData;
 import com.ubhave.sensormanager.tester.ExampleAbstractActivity;
 import com.ubhave.sensormanager.tester.R;
@@ -85,22 +86,29 @@ public abstract class AbstractPullSensorExampleActivity extends ExampleAbstractA
 		}
 		else
 		{
-			new SampleOnceTask()
+			try {
+				new SampleOnceTask(selectedSensorType)
+				{
+					@Override
+					public void onPreExecute()
+					{
+						setSensorStatusField(SAMPLING);
+					}
+
+					@Override
+					public void onPostExecute(SensorData data)
+					{
+						updateUI(data);
+						setSensorStatusField(UNSUBSCRIBED);
+					}
+
+				}.execute();
+			}
+			catch (ESException e)
 			{
-				@Override
-				public void onPreExecute()
-				{
-					setSensorStatusField(SAMPLING);
-				}
-
-				@Override
-				public void onPostExecute(SensorData data)
-				{
-					updateUI(data);
-					setSensorStatusField(UNSUBSCRIBED);
-				}
-
-			}.execute(selectedSensorType);
+				setSensorDataField(e.getMessage());
+			}
+			
 		}
 	}
 }
