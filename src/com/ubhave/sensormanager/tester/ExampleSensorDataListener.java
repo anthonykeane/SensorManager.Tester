@@ -82,4 +82,9 @@ public class ExampleSensorDataListener implements SensorDataListener
 		return isSubscribed;
 	}
 
+	public void onCrossingLowBatteryThreshold(boolean arg0)
+	{
+		// ignore
+	}
+
 }
