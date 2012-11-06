@@ -65,9 +65,9 @@ public abstract class ExampleAbstractActivity extends Activity implements Sensor
 	}
 
 	@Override
-	public void onDestroy()
+	public void onPause()
 	{
-		super.onDestroy();
+		super.onPause();
 		if (sensorDataListener.isSubscribed())
 		{
 			unsubscribe();
