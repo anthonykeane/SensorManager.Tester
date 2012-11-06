@@ -98,7 +98,7 @@ public abstract class AbstractPullSensorExampleActivity extends ExampleAbstractA
 					@Override
 					public void onPostExecute(SensorData data)
 					{
-						updateUI(data);
+						updateUI(data.getDataString());
 						setSensorStatusField(UNSUBSCRIBED);
 					}
 

@@ -16,8 +16,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ubhave.sensormanager.data.SensorData;
-
 public abstract class ExampleAbstractActivity extends Activity implements SensorDataUI
 {
 	public final static String SENSOR_TYPE_ID = "sensorTypeId";
@@ -111,14 +109,14 @@ public abstract class ExampleAbstractActivity extends Activity implements Sensor
 	 */
 
 	@Override
-	public void updateUI(final SensorData data)
+	public void updateUI(final String data)
 	{
 		runOnUiThread(new Runnable()
 		{
 			public void run()
 			{
-				setSensorDataField(data.getDataString());
-				setSensorDataTime(data.getTimestamp());
+				setSensorDataField(data);
+				setSensorDataTime(System.currentTimeMillis());
 			}
 		});
 	}

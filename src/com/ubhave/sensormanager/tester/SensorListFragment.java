@@ -18,9 +18,9 @@ import android.widget.SimpleAdapter;
 
 import com.ubhave.sensormanager.ESException;
 import com.ubhave.sensormanager.sensors.SensorUtils;
+import com.ubhave.sensormanager.tester.pull.AbstractPullSensorExampleActivity;
 import com.ubhave.sensormanager.tester.pull.ConfigurablePullSensorExampleActivity;
 import com.ubhave.sensormanager.tester.pull.NonConfigurablePullSensorExampleActivity;
-import com.ubhave.sensormanager.tester.pull.AbstractPullSensorExampleActivity;
 import com.ubhave.sensormanager.tester.push.PushSensorExampleActivity;
 
 public class SensorListFragment extends Fragment
@@ -30,7 +30,7 @@ public class SensorListFragment extends Fragment
 	private final static int[] pullSensors = new int[] { SensorUtils.SENSOR_TYPE_ACCELEROMETER, SensorUtils.SENSOR_TYPE_BLUETOOTH, SensorUtils.SENSOR_TYPE_LOCATION, SensorUtils.SENSOR_TYPE_MICROPHONE, SensorUtils.SENSOR_TYPE_WIFI };
 	private final static boolean[] isConfigurablePullSensor = new boolean[] { true, false, false, true, false };
 
-	private final static int[] pushSensors = new int[] { SensorUtils.SENSOR_TYPE_BATTERY, SensorUtils.SENSOR_TYPE_PHONE_STATE, SensorUtils.SENSOR_TYPE_PROXIMITY, SensorUtils.SENSOR_TYPE_SCREEN, SensorUtils.SENSOR_TYPE_SMS };
+	private final static int[] pushSensors = new int[] { SensorUtils.SENSOR_TYPE_BATTERY, SensorUtils.SENSOR_TYPE_CONNECTION_STATE, SensorUtils.SENSOR_TYPE_PHONE_STATE, SensorUtils.SENSOR_TYPE_PROXIMITY, SensorUtils.SENSOR_TYPE_SCREEN, SensorUtils.SENSOR_TYPE_SMS };
 
 	private final static String TITLE = "title";
 	private final static String DESCRIPTION = "description";

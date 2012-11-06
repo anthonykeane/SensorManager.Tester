@@ -24,7 +24,6 @@
     <string name="done">Done</string>
     
     <string name="title_activity_main">Sensor Manager Tester</string>
-    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_test_layout">MainActivity</string>
     
@@ -44,12 +43,14 @@
     
     <string name="battery">Battery level and charging status.</string>
     <string name="phonestate">Whether the phone is ringing/in a call/etc.</string>
+    <string name="connectionstate">Monitors connection/disconnection events.</string>
     <string name="proximity">Is an object close to the phone\'s screen?</string>
     <string name="screen">Is the screen on/off?</string>
     <string name="sms">Short messages received/sent.</string>
     
     <string-array name="push_sensors_descriptions">
         <item>@string/battery</item>
+        <item>@string/connectionstate</item>
         <item>@string/phonestate</item>
         <item>@string/proximity</item>
         <item>@string/screen</item>

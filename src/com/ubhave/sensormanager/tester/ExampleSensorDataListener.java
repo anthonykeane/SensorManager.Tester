@@ -4,6 +4,7 @@ import com.ubhave.sensormanager.ESException;
 import com.ubhave.sensormanager.ESSensorManager;
 import com.ubhave.sensormanager.ESSensorManagerInterface;
 import com.ubhave.sensormanager.SensorDataListener;
+import com.ubhave.sensormanager.config.GlobalConfig;
 import com.ubhave.sensormanager.data.SensorData;
 import com.ubhave.sensormanager.sensors.SensorUtils;
 
@@ -25,6 +26,7 @@ public class ExampleSensorDataListener implements SensorDataListener
 		try
 		{
 			sensorManager = ESSensorManager.getSensorManager(ApplicationContext.getContext());
+			sensorManager.setGlobalConfig(GlobalConfig.LOW_BATTERY_THRESHOLD, 39);
 		}
 		catch (ESException e)
 		{
@@ -61,7 +63,7 @@ public class ExampleSensorDataListener implements SensorDataListener
 	@Override
 	public void onDataSensed(SensorData data)
 	{
-		userInterface.updateUI(data);
+		userInterface.updateUI(data.getDataString());
 	}
 
 	public String getSensorName()
@@ -82,9 +84,25 @@ public class ExampleSensorDataListener implements SensorDataListener
 		return isSubscribed;
 	}
 
-	public void onCrossingLowBatteryThreshold(boolean arg0)
+	@Override
+	public void onCrossingLowBatteryThreshold(boolean isBelowThreshold)
 	{
-		// ignore
+		try {
+			if (isBelowThreshold)
+			{
+				userInterface.updateUI("Sensing stopped: low battery");
+				sensorManager.pauseSubscription(sensorSubscriptionId);
+			}
+			else {
+				userInterface.updateUI("Sensing unpaused: battery healthy");
+				sensorManager.unPauseSubscription(sensorSubscriptionId);
+			}
+		}
+		catch (ESException e)
+		{
+			e.printStackTrace();
+		}
+		
 	}
 
 }
