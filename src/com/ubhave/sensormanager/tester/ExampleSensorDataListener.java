@@ -1,3 +1,25 @@
+/* **************************************************
+ Copyright (c) 2012, University of Cambridge
+ Neal Lathia, neal.lathia@cl.cam.ac.uk
+ Kiran Rachuri, kiran.rachuri@cl.cam.ac.uk
+
+This demo application was developed as part of the EPSRC Ubhave (Ubiquitous and
+Social Computing for Positive Behaviour Change) Project. For more
+information, please visit http://www.emotionsense.org
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
+IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ ************************************************** */
+
 package com.ubhave.sensormanager.tester;
 
 import com.ubhave.sensormanager.ESException;
@@ -7,7 +29,6 @@ import com.ubhave.sensormanager.SensorDataListener;
 import com.ubhave.sensormanager.config.GlobalConfig;
 import com.ubhave.sensormanager.data.SensorData;
 import com.ubhave.sensormanager.sensors.SensorUtils;
-
 
 public class ExampleSensorDataListener implements SensorDataListener
 {
@@ -78,7 +99,7 @@ public class ExampleSensorDataListener implements SensorDataListener
 			return null;
 		}
 	}
-	
+
 	public boolean isSubscribed()
 	{
 		return isSubscribed;
@@ -87,13 +108,15 @@ public class ExampleSensorDataListener implements SensorDataListener
 	@Override
 	public void onCrossingLowBatteryThreshold(boolean isBelowThreshold)
 	{
-		try {
+		try
+		{
 			if (isBelowThreshold)
 			{
 				userInterface.updateUI("Sensing stopped: low battery");
 				sensorManager.pauseSubscription(sensorSubscriptionId);
 			}
-			else {
+			else
+			{
 				userInterface.updateUI("Sensing unpaused: battery healthy");
 				sensorManager.unPauseSubscription(sensorSubscriptionId);
 			}
@@ -102,7 +125,7 @@ public class ExampleSensorDataListener implements SensorDataListener
 		{
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

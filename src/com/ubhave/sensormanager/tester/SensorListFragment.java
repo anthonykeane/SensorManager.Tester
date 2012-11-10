@@ -1,3 +1,25 @@
+/* **************************************************
+ Copyright (c) 2012, University of Cambridge
+ Neal Lathia, neal.lathia@cl.cam.ac.uk
+ Kiran Rachuri, kiran.rachuri@cl.cam.ac.uk
+
+This demo application was developed as part of the EPSRC Ubhave (Ubiquitous and
+Social Computing for Positive Behaviour Change) Project. For more
+information, please visit http://www.emotionsense.org
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
+IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ ************************************************** */
+
 package com.ubhave.sensormanager.tester;
 
 import java.util.ArrayList;
@@ -30,7 +52,8 @@ public class SensorListFragment extends Fragment
 	private final static int[] pullSensors = new int[] { SensorUtils.SENSOR_TYPE_ACCELEROMETER, SensorUtils.SENSOR_TYPE_BLUETOOTH, SensorUtils.SENSOR_TYPE_LOCATION, SensorUtils.SENSOR_TYPE_MICROPHONE, SensorUtils.SENSOR_TYPE_WIFI };
 	private final static boolean[] isConfigurablePullSensor = new boolean[] { true, false, false, true, false };
 
-	private final static int[] pushSensors = new int[] { SensorUtils.SENSOR_TYPE_BATTERY, SensorUtils.SENSOR_TYPE_CONNECTION_STATE, SensorUtils.SENSOR_TYPE_PHONE_STATE, SensorUtils.SENSOR_TYPE_PROXIMITY, SensorUtils.SENSOR_TYPE_SCREEN, SensorUtils.SENSOR_TYPE_SMS };
+	private final static int[] pushSensors = new int[] { SensorUtils.SENSOR_TYPE_BATTERY, SensorUtils.SENSOR_TYPE_CONNECTION_STATE, SensorUtils.SENSOR_TYPE_PHONE_STATE, SensorUtils.SENSOR_TYPE_PROXIMITY, SensorUtils.SENSOR_TYPE_SCREEN,
+			SensorUtils.SENSOR_TYPE_SMS };
 
 	private final static String TITLE = "title";
 	private final static String DESCRIPTION = "description";
