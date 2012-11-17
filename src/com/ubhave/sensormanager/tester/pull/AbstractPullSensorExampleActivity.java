@@ -123,7 +123,12 @@ public abstract class AbstractPullSensorExampleActivity extends ExampleAbstractA
 					@Override
 					public void onPostExecute(SensorData data)
 					{
-						updateUI(data.getDataString());
+						if (data != null)
+						{
+							updateUI(data.getDataString());
+						}
+						else updateUI("Null (e.g., sensor off)");
+						
 						setSensorStatusField(UNSUBSCRIBED);
 					}
 
