@@ -40,7 +40,6 @@ import android.widget.SimpleAdapter;
 
 import com.ubhave.sensormanager.ESException;
 import com.ubhave.sensormanager.sensors.SensorUtils;
-import com.ubhave.sensormanager.tester.pull.AbstractPullSensorExampleActivity;
 import com.ubhave.sensormanager.tester.pull.ConfigurablePullSensorExampleActivity;
 import com.ubhave.sensormanager.tester.pull.NonConfigurablePullSensorExampleActivity;
 import com.ubhave.sensormanager.tester.push.PushSensorExampleActivity;
@@ -135,14 +134,14 @@ public class SensorListFragment extends Fragment
 		{
 			intent = new Intent(context, NonConfigurablePullSensorExampleActivity.class);
 		}
-		intent.putExtra(AbstractPullSensorExampleActivity.SENSOR_TYPE_ID, sensorType);
+		intent.putExtra(ExampleAbstractActivity.SENSOR_TYPE_ID, sensorType);
 		startActivity(intent);
 	}
 
 	private void launchPushSensorActivity(Context context, int sensorType)
 	{
 		Intent intent = new Intent(context, PushSensorExampleActivity.class);
-		intent.putExtra(AbstractPullSensorExampleActivity.SENSOR_TYPE_ID, sensorType);
+		intent.putExtra(ExampleAbstractActivity.SENSOR_TYPE_ID, sensorType);
 		startActivity(intent);
 	}
 }
