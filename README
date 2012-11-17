@@ -3,7 +3,8 @@ which can be found here: https://github.com/nlathia/SensorManager
 
 This application's user interface uses Android fragments and therefore requires
 Android 3.0 and above. However, we note that the ES Library has been tested with
-Android 2.3.3 and above.
+Android 2.3.3 and above. For a version of this tester app that does not require
+fragments, please see: https://github.com/nlathia/SensorManager.Tester2
 
 Copyright (c) 2012, University of Cambridge
 Neal Lathia, neal.lathia@cl.cam.ac.uk
