@@ -1,6 +1,10 @@
 This is an example application to demonstrate how to use the ES2 Manager Library
 which can be found here: https://github.com/nlathia/SensorManager
 
+This application's user interface uses Android fragments and therefore requires
+Android 3.0 and above. However, we note that the ES Library has been tested with
+Android 2.3.3 and above.
+
 Copyright (c) 2012, University of Cambridge
 Neal Lathia, neal.lathia@cl.cam.ac.uk
 Kiran Rachuri, kiran.rachuri@cl.cam.ac.uk
