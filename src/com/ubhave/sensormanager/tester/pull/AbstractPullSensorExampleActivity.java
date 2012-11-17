@@ -24,6 +24,7 @@ package com.ubhave.sensormanager.tester.pull;
 
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -96,6 +97,7 @@ public abstract class AbstractPullSensorExampleActivity extends ExampleAbstractA
 		}
 		else
 		{
+			Log.d("Pull Sensor", "Subscribing");
 			super.subscribe();
 		}
 	}
@@ -129,6 +131,7 @@ public abstract class AbstractPullSensorExampleActivity extends ExampleAbstractA
 			}
 			catch (ESException e)
 			{
+				e.printStackTrace();
 				setSensorDataField(e.getMessage());
 			}
 

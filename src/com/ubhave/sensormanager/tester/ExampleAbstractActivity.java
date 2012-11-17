@@ -26,6 +26,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import com.ubhave.sensormanager.sensors.SensorUtils;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -90,6 +92,19 @@ public abstract class ExampleAbstractActivity extends Activity implements Sensor
 	public void onPause()
 	{
 		super.onPause();
+		if (sensorDataListener.isSubscribed())
+		{
+			if (selectedSensorType != SensorUtils.SENSOR_TYPE_SCREEN)
+			{
+				unsubscribe();
+			}
+		}
+	}
+	
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
 		if (sensorDataListener.isSubscribed())
 		{
 			unsubscribe();
@@ -201,7 +216,7 @@ public abstract class ExampleAbstractActivity extends Activity implements Sensor
 		}
 	}
 
-	private void unsubscribe()
+	protected void unsubscribe()
 	{
 		if (sensorDataListener.isSubscribed())
 		{

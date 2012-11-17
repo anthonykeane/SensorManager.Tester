@@ -27,6 +27,7 @@ import com.ubhave.sensormanager.ESSensorManager;
 import com.ubhave.sensormanager.ESSensorManagerInterface;
 import com.ubhave.sensormanager.SensorDataListener;
 import com.ubhave.sensormanager.config.GlobalConfig;
+import com.ubhave.sensormanager.config.SensorConfig;
 import com.ubhave.sensormanager.data.SensorData;
 import com.ubhave.sensormanager.sensors.SensorUtils;
 
@@ -47,7 +48,12 @@ public class ExampleSensorDataListener implements SensorDataListener
 		try
 		{
 			sensorManager = ESSensorManager.getSensorManager(ApplicationContext.getContext());
-			sensorManager.setGlobalConfig(GlobalConfig.LOW_BATTERY_THRESHOLD, 39);
+			sensorManager.setGlobalConfig(GlobalConfig.LOW_BATTERY_THRESHOLD, 25);
+			
+			if (sensorType == SensorUtils.SENSOR_TYPE_LOCATION)
+			{
+				sensorManager.setSensorConfig(SensorUtils.SENSOR_TYPE_LOCATION, SensorConfig.LOCATION_ACCURACY, SensorConfig.LOCATION_ACCURACY_FINE);
+			}
 		}
 		catch (ESException e)
 		{

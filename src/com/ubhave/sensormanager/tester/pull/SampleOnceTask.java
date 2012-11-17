@@ -23,6 +23,7 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 package com.ubhave.sensormanager.tester.pull;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.ubhave.sensormanager.ESException;
 import com.ubhave.sensormanager.ESSensorManager;
@@ -45,10 +46,12 @@ public class SampleOnceTask extends AsyncTask<Void, Void, SensorData>
 	{
 		try
 		{
+			Log.d("Sensor Task", "Sampling from Sensor");
 			return sensorManager.getDataFromSensor(sensorType);
 		}
 		catch (ESException e)
 		{
+			e.printStackTrace();
 			return null;
 		}
 	}

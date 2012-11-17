@@ -34,6 +34,16 @@ public class PushSensorExampleActivity extends ExampleAbstractActivity
 	{
 		return R.layout.push_sensor_layout;
 	}
+	
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+		if (sensorDataListener.isSubscribed())
+		{
+			unsubscribe();
+		}
+	}
 
 	@Override
 	protected void setSensorDataField(String dataString)
