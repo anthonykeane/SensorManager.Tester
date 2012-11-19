@@ -30,6 +30,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.ubhave.dataformatter.DataFormatter;
+import com.ubhave.dataformatter.json.JSONFormatter;
 import com.ubhave.sensormanager.ESException;
 import com.ubhave.sensormanager.data.SensorData;
 import com.ubhave.sensormanager.tester.ExampleAbstractActivity;
@@ -125,7 +127,8 @@ public abstract class AbstractPullSensorExampleActivity extends ExampleAbstractA
 					{
 						if (data != null)
 						{
-							updateUI(data.getDataString());
+							JSONFormatter formatter = DataFormatter.getJSONFormatter(selectedSensorType);
+							updateUI(formatter.toJSON(data).toJSONString());
 						}
 						else updateUI("Null (e.g., sensor off)");
 						

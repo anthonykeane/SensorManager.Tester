@@ -22,6 +22,8 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 package com.ubhave.sensormanager.tester;
 
+import com.ubhave.dataformatter.DataFormatter;
+import com.ubhave.dataformatter.json.JSONFormatter;
 import com.ubhave.sensormanager.ESException;
 import com.ubhave.sensormanager.ESSensorManager;
 import com.ubhave.sensormanager.ESSensorManagerInterface;
@@ -37,6 +39,8 @@ public class ExampleSensorDataListener implements SensorDataListener
 	private final SensorDataUI userInterface;
 
 	private ESSensorManagerInterface sensorManager;
+	private final JSONFormatter formatter;
+	
 	private int sensorSubscriptionId;
 	private boolean isSubscribed;
 
@@ -45,6 +49,9 @@ public class ExampleSensorDataListener implements SensorDataListener
 		this.sensorType = sensorType;
 		this.userInterface = userInterface;
 		isSubscribed = false;
+		
+		formatter = DataFormatter.getJSONFormatter(sensorType);
+		
 		try
 		{
 			sensorManager = ESSensorManager.getSensorManager(ApplicationContext.getContext());
@@ -90,7 +97,7 @@ public class ExampleSensorDataListener implements SensorDataListener
 	@Override
 	public void onDataSensed(SensorData data)
 	{
-		userInterface.updateUI(data.getDataString());
+		userInterface.updateUI(formatter.toJSON(data).toJSONString());
 	}
 
 	public String getSensorName()
