@@ -1,5 +1,9 @@
-This is an example application to demonstrate how to use the ES2 Manager Library
+This is an example application to demonstrate how to use the ES2 Library
 which can be found here: https://github.com/nlathia/SensorManager
+
+It uses a separate library to format data as JSON strings.
+This library can be found here:
+https://github.com/nlathia/SensorDataManager
 
 This application's user interface uses Android fragments and therefore requires
 Android 3.0 and above. However, we note that the ES Library has been tested with
