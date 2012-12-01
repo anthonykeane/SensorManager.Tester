@@ -51,7 +51,6 @@ public class ExampleSensorDataListener implements SensorDataListener
 		isSubscribed = false;
 		
 		formatter = DataFormatter.getJSONFormatter(sensorType);
-		
 		try
 		{
 			sensorManager = ESSensorManager.getSensorManager(ApplicationContext.getContext());
