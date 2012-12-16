@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="lib" path="libs/sensormanager.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/json_simple-1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/sensordatamanager.jar"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="libs/triggermanager.jar"/>
+=======
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
+>>>>>>> Updating libs
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
