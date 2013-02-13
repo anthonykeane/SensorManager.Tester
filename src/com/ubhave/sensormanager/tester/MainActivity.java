@@ -22,16 +22,31 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 package com.ubhave.sensormanager.tester;
 
+import java.util.List;
+
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
+
+import com.ubhave.datahandler.DataHandlerException;
+import com.ubhave.datahandler.DataManager;
+import com.ubhave.sensormanager.ESException;
+import com.ubhave.sensormanager.ESSensorManager;
+import com.ubhave.sensormanager.SensorDataListener;
+import com.ubhave.sensormanager.data.SensorData;
+import com.ubhave.sensormanager.sensors.SensorUtils;
+import com.ubhave.triggermanager.TriggerException;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener
 {
-
+	public static final String TAG = "MainActivity";
 	private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
+
+	private static boolean enableAutoTest = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -46,6 +61,89 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		// For each of the sections in the app, add a tab to the action bar.
 		actionBar.addTab(actionBar.newTab().setText(R.string.pull_sensor).setTabListener(this));
 		actionBar.addTab(actionBar.newTab().setText(R.string.push_sensor).setTabListener(this));
+
+		if (enableAutoTest)
+		{
+			new TestThread().start();
+		}
+	}
+
+	class TestThread extends Thread implements SensorDataListener
+	{
+
+		@Override
+		public void onCrossingLowBatteryThreshold(boolean arg0)
+		{
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onDataSensed(SensorData sensorData)
+		{
+			try
+			{
+				Log.d(TAG, "received sensor data");
+				DataManager.getInstance(MainActivity.this.getApplicationContext()).logSensorData(sensorData);
+			}
+			catch (DataHandlerException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			catch (ESException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			catch (TriggerException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		public void run()
+		{
+			try
+			{
+				Thread.sleep(10000);
+				Looper.prepare();
+				ESSensorManager esSensorManager = ESSensorManager
+						.getSensorManager(MainActivity.this.getApplicationContext());
+
+				for (int sensorId : SensorUtils.ALL_SENSORS)
+				{
+					esSensorManager.subscribeToSensorData(sensorId, this);
+				}
+
+				while (true)
+				{
+					Thread.sleep(30000);
+					for (int sensorId : SensorUtils.ALL_SENSORS)
+					{
+						try
+						{
+
+							DataManager dataManager = DataManager.getInstance(MainActivity.this);
+							List<SensorData> list = dataManager.getRecentSensorData(sensorId);
+
+							System.out.println("=====================================>>>>> "
+									+ SensorUtils.getSensorName(sensorId) + "    size " + list.size());
+						}
+						catch (Exception e)
+						{
+							e.printStackTrace();
+						}
+					}
+				}
+
+			}
+			catch (Exception exp)
+			{
+				exp.printStackTrace();
+			}
+		}
 	}
 
 	@Override
