@@ -32,6 +32,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
+import com.ubhave.datahandler.DataHandlerConfig;
 import com.ubhave.datahandler.DataHandlerException;
 import com.ubhave.datahandler.DataManager;
 import com.ubhave.sensormanager.ESException;
@@ -111,6 +112,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 				Looper.prepare();
 				ESSensorManager esSensorManager = ESSensorManager
 						.getSensorManager(MainActivity.this.getApplicationContext());
+				
+				DataManager dataManager = DataManager.getInstance(MainActivity.this);
 
 				for (int sensorId : SensorUtils.ALL_SENSORS)
 				{
@@ -124,8 +127,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 					{
 						try
 						{
-
-							DataManager dataManager = DataManager.getInstance(MainActivity.this);
 							List<SensorData> list = dataManager.getRecentSensorData(sensorId);
 
 							System.out.println("=====================================>>>>> "
