@@ -32,15 +32,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
-import com.ubhave.datahandler.DataHandlerConfig;
-import com.ubhave.datahandler.DataHandlerException;
 import com.ubhave.datahandler.DataManager;
-import com.ubhave.sensormanager.ESException;
 import com.ubhave.sensormanager.ESSensorManager;
 import com.ubhave.sensormanager.SensorDataListener;
 import com.ubhave.sensormanager.data.SensorData;
 import com.ubhave.sensormanager.sensors.SensorUtils;
-import com.ubhave.triggermanager.TriggerException;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener
 {
@@ -75,8 +71,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		@Override
 		public void onCrossingLowBatteryThreshold(boolean arg0)
 		{
-			// TODO Auto-generated method stub
-
 		}
 
 		@Override
@@ -84,22 +78,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		{
 			try
 			{
-				Log.d(TAG, "received sensor data");
+				Log.d(TAG, "received sensor data " + SensorUtils.getSensorName(sensorData.getSensorType()));
 				DataManager.getInstance(MainActivity.this.getApplicationContext()).logSensorData(sensorData);
 			}
-			catch (DataHandlerException e)
+			catch (Exception e)
 			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			catch (ESException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			catch (TriggerException e)
-			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -110,9 +93,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			{
 				Thread.sleep(10000);
 				Looper.prepare();
+
 				ESSensorManager esSensorManager = ESSensorManager
 						.getSensorManager(MainActivity.this.getApplicationContext());
-				
+
 				DataManager dataManager = DataManager.getInstance(MainActivity.this);
 
 				for (int sensorId : SensorUtils.ALL_SENSORS)
