@@ -26,6 +26,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -189,6 +190,7 @@ public abstract class ExampleAbstractActivity extends Activity implements Sensor
 		dataField.setText(dataString);
 	}
 
+	@SuppressLint("SimpleDateFormat")
 	protected void setSensorDataTime(long timestamp)
 	{
 		Calendar calendar = Calendar.getInstance();
