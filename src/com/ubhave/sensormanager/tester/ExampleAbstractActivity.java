@@ -39,7 +39,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.sensormanager.tester.R;
 import com.ubhave.sensormanager.sensors.SensorUtils;
 
 public abstract class ExampleAbstractActivity extends Activity implements SensorDataUI

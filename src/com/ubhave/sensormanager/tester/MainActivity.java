@@ -32,7 +32,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
-import com.example.sensormanager.tester.R;
 import com.ubhave.datahandler.DataManager;
 import com.ubhave.sensormanager.ESSensorManager;
 import com.ubhave.sensormanager.SensorDataListener;
