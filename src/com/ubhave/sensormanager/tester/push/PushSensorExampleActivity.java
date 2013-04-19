@@ -24,8 +24,8 @@ package com.ubhave.sensormanager.tester.push;
 
 import android.widget.EditText;
 
+import com.example.sensormanager.tester.R;
 import com.ubhave.sensormanager.tester.ExampleAbstractActivity;
-import com.ubhave.sensormanager.tester.R;
 
 public class PushSensorExampleActivity extends ExampleAbstractActivity
 {

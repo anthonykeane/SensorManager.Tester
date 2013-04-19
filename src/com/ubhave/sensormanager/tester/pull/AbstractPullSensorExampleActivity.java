@@ -30,13 +30,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.sensormanager.tester.R;
 import com.ubhave.dataformatter.DataFormatter;
 import com.ubhave.dataformatter.json.JSONFormatter;
 import com.ubhave.sensormanager.ESException;
 import com.ubhave.sensormanager.data.SensorData;
 import com.ubhave.sensormanager.tester.ApplicationContext;
 import com.ubhave.sensormanager.tester.ExampleAbstractActivity;
-import com.ubhave.sensormanager.tester.R;
 
 public abstract class AbstractPullSensorExampleActivity extends ExampleAbstractActivity
 {

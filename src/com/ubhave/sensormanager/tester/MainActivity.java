@@ -32,6 +32,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
+import com.example.sensormanager.tester.R;
 import com.ubhave.datahandler.DataManager;
 import com.ubhave.sensormanager.ESSensorManager;
 import com.ubhave.sensormanager.SensorDataListener;
@@ -111,7 +112,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 					{
 						try
 						{
-							List<SensorData> list = dataManager.getRecentSensorData(sensorId);
+							List<SensorData> list = dataManager.getRecentSensorData(sensorId, 1000 * 60 * 60 * 24);
 
 							System.out.println("=====================================>>>>> "
 									+ SensorUtils.getSensorName(sensorId) + "    size " + list.size());

@@ -26,8 +26,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import com.ubhave.sensormanager.sensors.SensorUtils;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -39,6 +37,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.sensormanager.tester.R;
+import com.ubhave.sensormanager.sensors.SensorUtils;
 
 public abstract class ExampleAbstractActivity extends Activity implements SensorDataUI
 {

@@ -33,7 +33,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-import com.ubhave.sensormanager.tester.R;
+import com.example.sensormanager.tester.R;
 
 public class UpdateSensorConfigExampleActivity extends Activity
 {
