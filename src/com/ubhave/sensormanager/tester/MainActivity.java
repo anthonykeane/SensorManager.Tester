@@ -43,7 +43,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	public static final String TAG = "MainActivity";
 	private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
 
-	private static boolean enableAutoTest = false;
+	private static boolean enableAutoTest = true;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -104,7 +104,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 					esSensorManager.subscribeToSensorData(sensorId, this);
 				}
 
-				while (true)
+				for (int i=0; i<10; i++)
 				{
 					Thread.sleep(30000);
 					for (int sensorId : SensorUtils.ALL_SENSORS)
