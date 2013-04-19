@@ -25,7 +25,7 @@ package com.ubhave.sensormanager.tester.pull;
 import com.ubhave.sensormanager.ESException;
 import com.ubhave.sensormanager.ESSensorManager;
 import com.ubhave.sensormanager.ESSensorManagerInterface;
-import com.ubhave.sensormanager.config.SensorConfig;
+import com.ubhave.sensormanager.config.sensors.pull.PullSensorConfig;
 import com.ubhave.sensormanager.sensors.SensorUtils;
 import com.ubhave.sensormanager.tester.ApplicationContext;
 
@@ -64,7 +64,7 @@ public class ExampleSensorConfigUpdater
 	{
 		try
 		{
-			sensorManager.setSensorConfig(sensorType, SensorConfig.SENSE_WINDOW_LENGTH_MILLIS, millis);
+			sensorManager.setSensorConfig(sensorType, PullSensorConfig.SENSE_WINDOW_LENGTH_MILLIS, millis);
 		}
 		catch (ESException e)
 		{
@@ -76,7 +76,7 @@ public class ExampleSensorConfigUpdater
 	{
 		try
 		{
-			sensorManager.setSensorConfig(sensorType, SensorConfig.POST_SENSE_SLEEP_LENGTH_MILLIS, millis);
+			sensorManager.setSensorConfig(sensorType, PullSensorConfig.POST_SENSE_SLEEP_LENGTH_MILLIS, millis);
 		}
 		catch (ESException e)
 		{
@@ -88,7 +88,7 @@ public class ExampleSensorConfigUpdater
 	{
 		try
 		{
-			Long sampleWindow = (Long) sensorManager.getSensorConfigValue(sensorType, SensorConfig.SENSE_WINDOW_LENGTH_MILLIS);
+			Long sampleWindow = (Long) sensorManager.getSensorConfigValue(sensorType, PullSensorConfig.SENSE_WINDOW_LENGTH_MILLIS);
 			return (int) (sampleWindow / 1000);
 		}
 		catch (ESException e)
@@ -102,7 +102,7 @@ public class ExampleSensorConfigUpdater
 	{
 		try
 		{
-			Long sampleWindow = (Long) sensorManager.getSensorConfigValue(sensorType, SensorConfig.POST_SENSE_SLEEP_LENGTH_MILLIS);
+			Long sampleWindow = (Long) sensorManager.getSensorConfigValue(sensorType, PullSensorConfig.POST_SENSE_SLEEP_LENGTH_MILLIS);
 			return (int) (sampleWindow / 1000);
 		}
 		catch (ESException e)

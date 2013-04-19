@@ -34,6 +34,7 @@ import com.ubhave.dataformatter.DataFormatter;
 import com.ubhave.dataformatter.json.JSONFormatter;
 import com.ubhave.sensormanager.ESException;
 import com.ubhave.sensormanager.data.SensorData;
+import com.ubhave.sensormanager.tester.ApplicationContext;
 import com.ubhave.sensormanager.tester.ExampleAbstractActivity;
 import com.ubhave.sensormanager.tester.R;
 
@@ -127,7 +128,7 @@ public abstract class AbstractPullSensorExampleActivity extends ExampleAbstractA
 					{
 						if (data != null)
 						{
-							JSONFormatter formatter = DataFormatter.getJSONFormatter(selectedSensorType);
+							JSONFormatter formatter = DataFormatter.getJSONFormatter(ApplicationContext.getContext(), selectedSensorType);
 							updateUI(formatter.toJSON(data).toJSONString());
 						}
 						else updateUI("Null (e.g., sensor off)");

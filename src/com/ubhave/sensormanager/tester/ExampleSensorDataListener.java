@@ -22,6 +22,8 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 package com.ubhave.sensormanager.tester;
 
+import android.content.Context;
+
 import com.ubhave.dataformatter.DataFormatter;
 import com.ubhave.dataformatter.json.JSONFormatter;
 import com.ubhave.sensormanager.ESException;
@@ -29,7 +31,7 @@ import com.ubhave.sensormanager.ESSensorManager;
 import com.ubhave.sensormanager.ESSensorManagerInterface;
 import com.ubhave.sensormanager.SensorDataListener;
 import com.ubhave.sensormanager.config.GlobalConfig;
-import com.ubhave.sensormanager.config.SensorConfig;
+import com.ubhave.sensormanager.config.sensors.pull.LocationConfig;
 import com.ubhave.sensormanager.data.SensorData;
 import com.ubhave.sensormanager.sensors.SensorUtils;
 
@@ -50,15 +52,16 @@ public class ExampleSensorDataListener implements SensorDataListener
 		this.userInterface = userInterface;
 		isSubscribed = false;
 		
-		formatter = DataFormatter.getJSONFormatter(sensorType);
+		Context context = ApplicationContext.getContext();
+		formatter = DataFormatter.getJSONFormatter(context, sensorType);
 		try
 		{
-			sensorManager = ESSensorManager.getSensorManager(ApplicationContext.getContext());
+			sensorManager = ESSensorManager.getSensorManager(context);
 			sensorManager.setGlobalConfig(GlobalConfig.LOW_BATTERY_THRESHOLD, 25);
 			
 			if (sensorType == SensorUtils.SENSOR_TYPE_LOCATION)
 			{
-				sensorManager.setSensorConfig(SensorUtils.SENSOR_TYPE_LOCATION, SensorConfig.LOCATION_ACCURACY, SensorConfig.LOCATION_ACCURACY_FINE);
+				sensorManager.setSensorConfig(SensorUtils.SENSOR_TYPE_LOCATION, LocationConfig.ACCURACY_TYPE, LocationConfig.LOCATION_ACCURACY_FINE);
 			}
 		}
 		catch (ESException e)
