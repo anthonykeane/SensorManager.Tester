@@ -22,35 +22,28 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 package com.ubhave.sensormanager.tester;
 
-import java.util.List;
-
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 
-import com.ubhave.datahandler.DataManager;
-import com.ubhave.sensormanager.ESSensorManager;
-import com.ubhave.sensormanager.SensorDataListener;
-import com.ubhave.sensormanager.data.SensorData;
-import com.ubhave.sensormanager.sensors.SensorUtils;
+import com.ubhave.sensormanager.tester.autotest.SensorLoggingTestThread;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener
 {
 	public static final String TAG = "MainActivity";
 	private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
 
-	private static boolean enableAutoTest = true;
+	private static boolean enableAutoTest = false;
+	private static boolean enableFileSyncTest = true;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -61,74 +54,18 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 		if (enableAutoTest)
 		{
-			new TestThread().start();
+			new SensorLoggingTestThread(this).start();
+		}
+		if (enableFileSyncTest)
+		{
+			
 		}
 	}
 
-	class TestThread extends Thread implements SensorDataListener
+	class TestThread 
 	{
 
-		@Override
-		public void onCrossingLowBatteryThreshold(boolean arg0)
-		{
-		}
-
-		@Override
-		public void onDataSensed(SensorData sensorData)
-		{
-			try
-			{
-				Log.d(TAG, "received sensor data " + SensorUtils.getSensorName(sensorData.getSensorType()));
-				DataManager.getInstance(MainActivity.this.getApplicationContext()).logSensorData(sensorData);
-			}
-			catch (Exception e)
-			{
-				e.printStackTrace();
-			}
-		}
-
-		public void run()
-		{
-			try
-			{
-				Thread.sleep(10000);
-				Looper.prepare();
-
-				ESSensorManager esSensorManager = ESSensorManager
-						.getSensorManager(MainActivity.this.getApplicationContext());
-
-				DataManager dataManager = DataManager.getInstance(MainActivity.this);
-
-				for (int sensorId : SensorUtils.ALL_SENSORS)
-				{
-					esSensorManager.subscribeToSensorData(sensorId, this);
-				}
-
-				for (int i=0; i<10; i++)
-				{
-					Thread.sleep(30000);
-					for (int sensorId : SensorUtils.ALL_SENSORS)
-					{
-						try
-						{
-							List<SensorData> list = dataManager.getRecentSensorData(sensorId, 1000 * 60 * 60 * 24);
-
-							System.out.println("=====================================>>>>> "
-									+ SensorUtils.getSensorName(sensorId) + "    size " + list.size());
-						}
-						catch (Exception e)
-						{
-							e.printStackTrace();
-						}
-					}
-				}
-
-			}
-			catch (Exception exp)
-			{
-				exp.printStackTrace();
-			}
-		}
+		
 	}
 
 	@Override
