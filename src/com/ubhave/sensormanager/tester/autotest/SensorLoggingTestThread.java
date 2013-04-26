@@ -7,12 +7,10 @@ import android.os.Looper;
 import android.util.Log;
 
 import com.ubhave.datahandler.DataManager;
-import com.ubhave.sensormanager.ESException;
 import com.ubhave.sensormanager.ESSensorManager;
 import com.ubhave.sensormanager.SensorDataListener;
 import com.ubhave.sensormanager.data.SensorData;
 import com.ubhave.sensormanager.sensors.SensorUtils;
-import com.ubhave.triggermanager.TriggerException;
 
 public class SensorLoggingTestThread extends Thread implements SensorDataListener
 {
@@ -27,14 +25,8 @@ public class SensorLoggingTestThread extends Thread implements SensorDataListene
 		{
 			dataManager = DataManager.getInstance(context);
 		}
-		catch (ESException e)
+		catch (Exception e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (TriggerException e)
-		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
+import com.ubhave.sensormanager.tester.autotest.FileSyncTest;
 import com.ubhave.sensormanager.tester.autotest.SensorLoggingTestThread;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener
@@ -37,6 +38,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 	private static boolean enableAutoTest = false;
 	private static boolean enableFileSyncTest = true;
+	
+	private FileSyncTest fileSyncTester;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -58,14 +61,28 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		}
 		if (enableFileSyncTest)
 		{
-			
+			fileSyncTester = new FileSyncTest(this);
 		}
 	}
-
-	class TestThread 
+	
+	@Override
+	public void onResume()
 	{
-
-		
+		super.onResume();
+		if (fileSyncTester != null)
+		{
+			fileSyncTester.subscribe();
+		}
+	}
+	
+	@Override
+	public void onPause()
+	{
+		super.onPause();
+		if (fileSyncTester != null)
+		{
+			fileSyncTester.unsubscribe();
+		}
 	}
 
 	@Override
