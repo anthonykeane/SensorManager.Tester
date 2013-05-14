@@ -1,6 +1,9 @@
 This is an example application to demonstrate how to use the ES2 Library
 which can be found here: https://github.com/nlathia/SensorManager
 
+WARNING:
+We are using this tester app to test the dev branch of the SensorManager!
+
 It uses a separate library to format data as JSON strings.
 This library can be found here:
 https://github.com/nlathia/SensorDataManager

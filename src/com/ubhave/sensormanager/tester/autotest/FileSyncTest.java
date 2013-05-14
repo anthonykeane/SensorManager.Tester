@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.ubhave.datahandler.DataManager;
+import com.ubhave.datahandler.ESDataManager;
 import com.ubhave.datahandler.except.DataHandlerException;
 import com.ubhave.datahandler.sync.FileUpdatedListener;
 import com.ubhave.datahandler.sync.SyncRequest;
@@ -14,7 +14,7 @@ public class FileSyncTest implements FileUpdatedListener
 {
 	private final Context context;	
 	private int subscriptionId;
-	private DataManager dataManager;
+	private ESDataManager dataManager;
 	private boolean isSubscribed;
 	
 	public FileSyncTest(Context context)
@@ -22,7 +22,7 @@ public class FileSyncTest implements FileUpdatedListener
 		this.context = context;
 		try
 		{
-			dataManager = DataManager.getInstance(context);
+			dataManager = ESDataManager.getInstance(context);
 			isSubscribed = false;
 		}
 		catch (Exception e)
@@ -48,7 +48,6 @@ public class FileSyncTest implements FileUpdatedListener
 				e.printStackTrace();
 			}
 		}
-		
 	}
 	
 	public void unsubscribe()
@@ -66,7 +65,6 @@ public class FileSyncTest implements FileUpdatedListener
 				e.printStackTrace();
 			}
 		}
-		
 	}
 
 	@Override
