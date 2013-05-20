@@ -28,6 +28,8 @@
     <string name="title_activity_test_layout">MainActivity</string>
     
     <string name="accelerometer">Samples the phone\'s acceleration.</string>
+    <string name="call_content">Reads the phone\'s call details</string>
+    <string name="sms_content">Reads the phone\'s SMS content</string>
     <string name="bluetooth">Scan for nearby Bluetooth devices.</string>
     <string name="location">Get the latitude/longitude coordinates.</string>
     <string name="microphone">Record an audio sample.</string>
@@ -35,6 +37,8 @@
     
     <string-array name="pull_sensors_descriptions">
         <item>@string/accelerometer</item>
+        <item>@string/call_content</item>
+        <item>@string/sms_content</item>
         <item>@string/bluetooth</item>
         <item>@string/location</item>
         <item>@string/microphone</item>

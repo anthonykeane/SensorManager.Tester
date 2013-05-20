@@ -36,7 +36,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	public static final String TAG = "MainActivity";
 	private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
 
-	private static boolean enableAutoTest = true;
+	private static boolean enableAutoTest = false;
 	private static boolean enableFileSyncTest = false;
 	
 	private FileSyncTest fileSyncTester;

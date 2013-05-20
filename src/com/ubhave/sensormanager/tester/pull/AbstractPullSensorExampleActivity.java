@@ -22,6 +22,8 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 package com.ubhave.sensormanager.tester.pull;
 
+import java.util.ArrayList;
+
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,7 +35,11 @@ import android.widget.Toast;
 import com.ubhave.dataformatter.DataFormatter;
 import com.ubhave.dataformatter.json.JSONFormatter;
 import com.ubhave.sensormanager.ESException;
+import com.ubhave.sensormanager.config.sensors.pull.ContentReaderConfig;
 import com.ubhave.sensormanager.data.SensorData;
+import com.ubhave.sensormanager.data.pullsensor.ContentReaderData;
+import com.ubhave.sensormanager.data.pullsensor.ContentReaderResult;
+import com.ubhave.sensormanager.sensors.SensorUtils;
 import com.ubhave.sensormanager.tester.ApplicationContext;
 import com.ubhave.sensormanager.tester.ExampleAbstractActivity;
 import com.ubhave.sensormanager.tester.R;
@@ -128,8 +134,22 @@ public abstract class AbstractPullSensorExampleActivity extends ExampleAbstractA
 					{
 						if (data != null)
 						{
-							JSONFormatter formatter = DataFormatter.getJSONFormatter(ApplicationContext.getContext(), selectedSensorType);
-							updateUI(formatter.toJSON(data).toJSONString());
+							if (data.getSensorType() == SensorUtils.SENSOR_TYPE_CALL_CONTENT_READER)
+							{
+								ContentReaderData cData = (ContentReaderData) data;
+								String ui = "";
+								ArrayList<ContentReaderResult> list = cData.getContentList();
+								ui = "Size: "+list.size();
+								for (ContentReaderResult entry : list)
+								{
+									ui += entry.get(ContentReaderConfig.CONTENT_MAP_ADDRESS_KEY)+"\n";
+								}
+							}
+							else
+							{
+								JSONFormatter formatter = DataFormatter.getJSONFormatter(ApplicationContext.getContext(), selectedSensorType);
+								updateUI(formatter.toJSON(data).toJSONString());
+							}
 						}
 						else updateUI("Null (e.g., sensor off)");
 						

@@ -48,7 +48,7 @@ public class SensorListFragment extends Fragment
 {
 	public final static String SENSOR_TYPE = "sensorType";
 
-	private final static int[] pullSensors = new int[] { SensorUtils.SENSOR_TYPE_ACCELEROMETER, SensorUtils.SENSOR_TYPE_BLUETOOTH, SensorUtils.SENSOR_TYPE_LOCATION, SensorUtils.SENSOR_TYPE_MICROPHONE, SensorUtils.SENSOR_TYPE_WIFI };
+	private final static int[] pullSensors = new int[] { SensorUtils.SENSOR_TYPE_ACCELEROMETER, SensorUtils.SENSOR_TYPE_CALL_CONTENT_READER, SensorUtils.SENSOR_TYPE_SMS_CONTENT_READER, SensorUtils.SENSOR_TYPE_BLUETOOTH, SensorUtils.SENSOR_TYPE_LOCATION, SensorUtils.SENSOR_TYPE_MICROPHONE, SensorUtils.SENSOR_TYPE_WIFI };
 	private final static boolean[] isConfigurablePullSensor = new boolean[] { true, false, false, true, false };
 
 	private final static int[] pushSensors = new int[] { SensorUtils.SENSOR_TYPE_BATTERY, SensorUtils.SENSOR_TYPE_CONNECTION_STATE, SensorUtils.SENSOR_TYPE_PHONE_STATE, SensorUtils.SENSOR_TYPE_PROXIMITY, SensorUtils.SENSOR_TYPE_SCREEN,
