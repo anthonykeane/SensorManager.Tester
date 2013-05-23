@@ -71,7 +71,7 @@ public class PushSensorBroadcastReceiver extends BroadcastReceiver
 	private void logEvent(final Context context, final SensorData data)
 	{
 		JSONFormatter sensorFormatter = DataFormatter.getJSONFormatter(context, data.getSensorType());
-		System.err.println(sensorFormatter.toJSON(data));
+		Log.d(TAG, sensorFormatter.toJSON(data).toJSONString());
 	}
 
 	/*

@@ -8,7 +8,6 @@ import com.ubhave.datahandler.ESDataManager;
 import com.ubhave.datahandler.except.DataHandlerException;
 import com.ubhave.datahandler.sync.FileUpdatedListener;
 import com.ubhave.datahandler.sync.SyncRequest;
-import com.ubhave.sensormanager.tester.constants.FileSync;
 
 public class FileSyncTest implements FileUpdatedListener
 {
@@ -16,6 +15,9 @@ public class FileSyncTest implements FileUpdatedListener
 	private int subscriptionId;
 	private ESDataManager dataManager;
 	private boolean isSubscribed;
+	
+	private static final String BASE_URL = "";
+	private static final String TARGET_FILE = "";
 	
 	public FileSyncTest(Context context)
 	{
@@ -37,7 +39,7 @@ public class FileSyncTest implements FileUpdatedListener
 		{
 			try
 			{
-				SyncRequest request = new SyncRequest(context, FileSync.BASE_URL, FileSync.TARGET_FILE);
+				SyncRequest request = new SyncRequest(context, BASE_URL, TARGET_FILE);
 				request.setSyncInterval(1000 * 15);
 				subscriptionId = dataManager.subscribeToRemoteFileUpdate(request, this);
 				Toast.makeText(context, "File sync subscribed...", Toast.LENGTH_LONG).show();

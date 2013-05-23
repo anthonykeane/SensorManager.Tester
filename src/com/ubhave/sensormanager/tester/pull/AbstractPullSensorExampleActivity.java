@@ -46,6 +46,7 @@ import com.ubhave.sensormanager.tester.R;
 
 public abstract class AbstractPullSensorExampleActivity extends ExampleAbstractActivity
 {
+	private static final String TAG = "AbstractPullSensorExampleActivity";
 	private final int SAMPLING = 2;
 
 	@Override
@@ -137,13 +138,14 @@ public abstract class AbstractPullSensorExampleActivity extends ExampleAbstractA
 							if (data.getSensorType() == SensorUtils.SENSOR_TYPE_CALL_CONTENT_READER)
 							{
 								ContentReaderData cData = (ContentReaderData) data;
-								String ui = "";
+								String ui;
 								ArrayList<ContentReaderResult> list = cData.getContentList();
 								ui = "Size: "+list.size();
 								for (ContentReaderResult entry : list)
 								{
 									ui += entry.get(ContentReaderConfig.CONTENT_MAP_ADDRESS_KEY)+"\n";
 								}
+								Log.d(TAG, ui);
 							}
 							else
 							{
